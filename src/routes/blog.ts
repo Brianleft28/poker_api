@@ -1,14 +1,8 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+import { getBlog } from "../controllers/blogController";
 
 const router = Router();
 
-router.use("/", (req: Request, res: Response) => {
-  res.send({
-    message: "Hello from blog",
-    status: 200,
-    success: true,
-    data: [],
-  });
-});
+router.use("/", getBlog);
 
 export default router;

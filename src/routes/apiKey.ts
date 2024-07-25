@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response, Router } from "express";
-import "dotenv/config";
+import { getApiKey } from "../controllers/apiKeyContoller";
 
 const router = Router();
 
+// middleware para obtener apiKey
 const middlewareApiKey = (req: Request, res: Response, next: NextFunction) => {
   const tokenName = "token";
   const tokenValue = process.env.TOKEN;
@@ -16,11 +17,10 @@ const middlewareApiKey = (req: Request, res: Response, next: NextFunction) => {
   }
   next();
 };
-
+// uso de middlewareApiKey
 router.use(middlewareApiKey);
 
-router.get("/", (req, res) => {
-  res.send({ apiKey: process.env.API_KEY });
-});
+// importar controlador
+router.get("/", getApiKey);
 
 export default router;
