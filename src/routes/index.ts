@@ -17,7 +17,7 @@ const globalMiddleware = (req: Request, res: Response, next: NextFunction) => {
   }
   next();
 };
-
+// // //
 router.use((req: Request, res: Response, next: NextFunction) => {
   if (req.path === "/api/v1/apiKey") {
     return next();
@@ -34,7 +34,7 @@ readdirSync(PATH_ROUTER).filter((fileName) => {
   const name = cleanName(fileName);
   if (name !== "index") {
     import(`./${name}`).then((module) => {
-      console.log(`Route http://localhost/api/v1/${name} loaded`);
+      console.log(`Route http://localhost:3000/api/v1/${name} loaded`);
       router.use(`/api/v1/${name}`, module.default);
     });
   }
