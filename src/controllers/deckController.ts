@@ -54,3 +54,14 @@ export const getCard = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Internal server error", error });
   }
 };
+
+export const reshuffleDeck = async (req: Request, res: Response) => {
+  const { deckId } = req.params;
+  const url = `https://deckofcardsapi.com/api/deck/${deckId}/shuffle/?remaining=true`;
+  try {
+    const response = await axios.get(url);
+    res.status(200).json(response.data);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error", error });
+  }
+};
